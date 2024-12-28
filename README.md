@@ -1,19 +1,19 @@
-## SEKURO17_TubesProg
+# SEKURO17_TubesProg
 Tubes Programming untuk SEKURO 17 
 
 Tubes ini menggunakan file URDF untuk mendeskripsikan model robot dan node ROS 2 untuk mengontrol robot melalui komunikasi antar topik.
 
 ## Cara Kerja
-# File URDF (Unified Robot Description Format)
+### File URDF (Unified Robot Description Format)
 File URDF digunakan untuk mendeskripsikan struktur robot, dengan komponen sebagai berikut:
 - Link: Bagian statis robot seperti bodi dan roda.
 - Joint: Hubungan antara link untuk memungkinkan pergerakan, seperti roda yang terhubung ke bodi.
 - Plugin Gazebo: Digunakan untuk menghubungkan simulasi robot dengan ROS melalui topik seperti /cmd_vel.
 
-# Simulasi Gazebo
+### Simulasi Gazebo
 Simulasi robot secara visual dan pergerakan menggunakan Gazebo. Robot akan diimpor ke Gazebo menggunakan spawn_entity.py dan adanya plugin Gazebo memastikan bahwa robot dapat menerima perintah dari ROS
 
-# Move Robot Node
+### Move Robot Node
 Node ini berfungsi untuk mengontrol robot dengan mem-publish kecepatan linier dan anguler robot ke topik /cmd_vel.
 
 ## Alur Kerja Sistem ROS

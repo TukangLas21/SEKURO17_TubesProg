@@ -1,0 +1,114 @@
+<robot name="robot_uro">
+    <!-- Body Link -->
+    <link name="base">
+        <visual> <!-- Robot appearance -->
+            <geometry>
+                <box size="0.5 0.3 0.1"/> <!-- Box length, width, height -->
+            </geometry>
+        </visual>
+        <collision> <!-- Collision boundaries -->
+            <geometry>
+                <box size="0.5 0.3 0.1"/>
+            </geometry>
+        </collision>
+        <inertial> <!-- Physical properties -->
+            <mass value="1.0"/> <!-- Mass in kilograms -->
+            <origin xyz="0 0 0"/>
+            <inertia ixx="0.008333" iyy="0.021666" izz="0.025833" ixy="0" ixz="0" iyz="0"/> <!-- Physics shi -->
+        </inertial>
+    </link>
+    <!-- Wheel links -->
+    <link name="front-left-wheel">
+        <visual>
+            <geometry>
+                <cylinder length="0.05" radius="0.05"/> <!-- Cylinder length and radius -->
+            </geometry>
+            <material name="black"/> <!-- Color -->
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder length="0.05" radius="0.05"/>
+            </geometry>
+        </collision>
+    </link>
+    <link name="front-right-wheel">
+        <visual>
+            <geometry>
+                <cylinder length="0.05" radius="0.05"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder length="0.05" radius="0.05"/>
+            </geometry>
+        </collision>
+    </link>
+    <link name="back-left-wheel">
+        <visual>
+            <geometry>
+                <cylinder length="0.05" radius="0.05"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder length="0.05" radius="0.05"/>
+            </geometry>
+        </collision>
+    </link>
+    <link name="back-right-wheel">
+        <visual>
+            <geometry>
+                <cylinder length="0.05" radius="0.05"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder length="0.05" radius="0.05"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- Joint links -->
+    <joint name="front-left-joint" type="continuous">
+        <parent link="base"/>
+        <child link="front-left-wheel"/>
+        <origin xyz="0.2 0.15 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+    <joint name="front-right-joint" type="continuous">
+        <parent link="base"/>
+        <child link="front-right-wheel"/>
+        <origin xyz="0.2 -0.15 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+    <joint name="back-left-joint" type="continuous">
+        <parent link="base"/>
+        <child link="back-left-wheel"/>
+        <origin xyz="-0.2 0.15 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+    <joint name="back-right-joint" type="continuous">
+        <parent link="base"/>
+        <child link="back-right-wheel"/>
+        <origin xyz="-0.2 -0.15 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <!-- Gazebo plugin -->
+    <gazebo>
+        <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+            <ros>
+                <namespace>/robot_uro</namespace>
+            </ros>
+            <updateRate>50</updateRate>
+            <leftJoint>back-left-joint</leftJoint>
+            <rightJoint>back-right-joint</rightJoint>
+            <wheelSeparation>0.3</wheelSeparation>
+            <wheelDiameter>0.1</wheelDiameter>
+            <robotBaseFrame>base</robotBaseFrame>
+        </plugin>
+    </gazebo>
+</robot>
